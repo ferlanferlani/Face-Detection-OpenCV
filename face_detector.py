@@ -1,10 +1,10 @@
 import cv2
 
-cascPath = "src\\eye.xml"
+cascPath = "src/eye.xml"
 
 faceCascade = cv2.CascadeClassifier(cascPath)
 
-video_capture = cv2.VideoCapture(1)
+video_capture = cv2.VideoCapture(0)
 
 while True:
     # Capture frame-by-frame
@@ -19,15 +19,12 @@ while True:
         flags=cv2.CASCADE_SCALE_IMAGE
     )
 
-    # Draw a rectangle around the facesq
-    # print(faces)
+    # Draw a rectangle around the faces
     for (x, y, w, h) in faces:        
-        # cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)        
         center_coordinates = x + w // 2, y + h // 2
-        radius = w // 2 # or can be h / 2 or can be anything based on your requirements
+        radius = w // 2
         cv2.circle(frame, center_coordinates, radius, (0, 0, 100), 3)
        
-
     # Display the resulting frame
     cv2.imshow('Video', frame)
 
